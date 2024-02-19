@@ -3,6 +3,7 @@ package no.hvl.dat110.broker;
 import java.util.Collection;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentHashMap.KeySetView;
 
 import no.hvl.dat110.common.TODO;
 import no.hvl.dat110.common.Logger;
@@ -55,7 +56,10 @@ public class Storage {
 		// TODO: add corresponding client session to the storage
 		// See ClientSession class
 		
-		throw new UnsupportedOperationException(TODO.method());
+		ClientSession cs = new ClientSession(user, connection);
+		clients.put(user, cs);
+		
+//		throw new UnsupportedOperationException(TODO.method());
 		
 	}
 
@@ -64,15 +68,21 @@ public class Storage {
 		// TODO: disconnet the client (user) 
 		// and remove client session for user from the storage
 		
-		throw new UnsupportedOperationException(TODO.method());
+		ClientSession cs = clients.get(user);
+		cs.disconnect();
+		clients.remove(user, cs);
+		
+//		throw new UnsupportedOperationException(TODO.method());
 		
 	}
 
 	public void createTopic(String topic) {
 
 		// TODO: create topic in the storage
-
-		throw new UnsupportedOperationException(TODO.method());
+		
+		subscriptions.put(topic, ConcurrentHashMap.newKeySet());
+		
+//		throw new UnsupportedOperationException(TODO.method());
 	
 	}
 
@@ -80,7 +90,9 @@ public class Storage {
 
 		// TODO: delete topic from the storage
 
-		throw new UnsupportedOperationException(TODO.method());
+		subscriptions.remove(topic);
+		
+//		throw new UnsupportedOperationException(TODO.method());
 		
 	}
 
@@ -88,14 +100,22 @@ public class Storage {
 
 		// TODO: add the user as subscriber to the topic
 		
-		throw new UnsupportedOperationException(TODO.method());
+		Set<String> subscribe = subscriptions.getOrDefault(topic, ConcurrentHashMap.newKeySet());
+		subscribe.add(user);
+		subscriptions.put(topic, subscribe);
+		
+//		throw new UnsupportedOperationException(TODO.method());
 		
 	}
 
 	public void removeSubscriber(String user, String topic) {
 
 		// TODO: remove the user as subscriber to the topic
-
-		throw new UnsupportedOperationException(TODO.method());
+		
+		Set<String> subscribe = subscriptions.get(topic);
+		subscribe.remove(user);
+		subscriptions.put(topic, subscribe);
+		
+//		throw new UnsupportedOperationException(TODO.method());
 	}
 }

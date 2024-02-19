@@ -6,10 +6,11 @@ public class DeleteTopicMsg extends Message {
 
     public DeleteTopicMsg(String user, String topic) {
     	super(MessageType.DELETETOPIC, user);
+    	this.topic = topic;
     }
 
     private String topic;
-    private String user;
+    
 	// TODO:
 	// Implement object variables - a topic is required
 	public String getTopic() {
@@ -18,15 +19,11 @@ public class DeleteTopicMsg extends Message {
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
+
+
 	@Override
 	public String toString() {
-		return "DeleteTopicMsg [topic=" + topic + ", user=" + user + "]";
+		return "DeleteTopicMsg [topic=" + topic + ", user=" + getUser() + "]";
 	}
 
 	// Complete the constructor, get/set-methods, and toString method

@@ -6,17 +6,11 @@ public class SubscribeMsg extends Message {
 
     public SubscribeMsg(String user, String topic) {
     	super(MessageType.SUBSCRIBE, user);
+    	this.topic = topic;
     }
     
-    private String user;
     private String topic;
     
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
 	public String getTopic() {
 		return topic;
 	}
@@ -25,7 +19,7 @@ public class SubscribeMsg extends Message {
 	}
 	@Override
 	public String toString() {
-		return "SubscribeMsg [user=" + user + ", topic=" + topic + "]";
+		return "SubscribeMsg [user=" + getUser() + ", topic=" + topic + "]";
 	}
 
 	// TODO:

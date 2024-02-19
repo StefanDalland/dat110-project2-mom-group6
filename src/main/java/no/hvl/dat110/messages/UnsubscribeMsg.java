@@ -6,17 +6,11 @@ public class UnsubscribeMsg extends Message {
 
     public UnsubscribeMsg(String user, String topic) {
     	super(MessageType.UNSUBSCRIBE, user);
+    	this.topic = topic;
     }
     
-    private String user;
     private String topic;
     
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
 	public String getTopic() {
 		return topic;
 	}
@@ -25,7 +19,7 @@ public class UnsubscribeMsg extends Message {
 	}
 	@Override
 	public String toString() {
-		return "UnsubscribeMsg [user=" + user + ", topic=" + topic + "]";
+		return "UnsubscribeMsg [user=" + getUser() + ", topic=" + topic + "]";
 	}
 
 	
