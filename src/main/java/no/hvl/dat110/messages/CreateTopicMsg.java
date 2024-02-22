@@ -6,21 +6,14 @@ public class CreateTopicMsg extends Message {
 
     public CreateTopicMsg(String user, String topic) {
     	super(MessageType.CREATETOPIC, user);
+    	this.topic = topic;
     }
     
     private String topic;
-    private String user;
     
-    public String getUser() {
-    	return user;
-    }
-    
-    public void setUser(String user) {
-    	this.user = user;
-    }
     
     public String getTopic() {
-    	return user;
+    	return topic;
     }
     public void setTopic(String topic) {
     	this.topic = topic;
@@ -28,7 +21,7 @@ public class CreateTopicMsg extends Message {
 
 	@Override
 	public String toString() {
-		return "CreateTopicMsg [topic=" + topic + ", user=" + user + "]";
+		return "CreateTopicMsg [topic=" + topic + ", user=" + getUser() + "]";
 	}
     
 	// TODO: 
